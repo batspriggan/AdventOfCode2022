@@ -3,11 +3,10 @@ using AdventOfCode2022;
 
 var types = AppDomain.CurrentDomain.GetAssemblies()
     .SelectMany(s => s.GetTypes())
-    .Where(p => typeof(IAdventOfCodeDay).IsAssignableFrom(p) && p.Name != typeof(IAdventOfCodeDay).Name);
+    .Where(p => typeof(AdventOfCodeDay).IsAssignableFrom(p) && p.Name != typeof(AdventOfCodeDay).Name);
 
 foreach (var type in types)
 {
-    var day = (IAdventOfCodeDay)Activator.CreateInstance(type);
-    Console.WriteLine(day.Calculate_1());
-    Console.WriteLine(day.Calculate_2());
+    var day = (AdventOfCodeDay)Activator.CreateInstance(type);
+    Console.WriteLine(day.DayResults);
 }

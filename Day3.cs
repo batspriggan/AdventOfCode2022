@@ -2,8 +2,9 @@
 using System.Reflection.Metadata.Ecma335;
 
 namespace AdventOfCode2022;
-internal class Day3 : IAdventOfCodeDay
+internal class Day3 : AdventOfCodeDay
 {
+    public override int DayNumber => 3;
     private record ruckSack(string firstCompartment, string secondCompartment)
     { 
         public string AllItems => firstCompartment+ secondCompartment;
@@ -14,17 +15,17 @@ internal class Day3 : IAdventOfCodeDay
             return c - 'a' + 1;
         return c - 'A' + 27;
     }
-    public string Calculate_1()
+    public override string Calculate_1()
     {
         var itemsList = ParseFile();
         var totalSum = itemsList.Sum(item =>{
             var commonElement = item.firstCompartment.Intersect(item.secondCompartment).Single();
             return ToItemPriority(commonElement);
         });
-        return $"Day 3 first result : {totalSum}";
+        return totalSum.ToString();
     }
 
-    public string Calculate_2()
+    public override string Calculate_2()
     {
         var itemsList = ParseFile().ToArray();
         int totalSum = 0;
@@ -34,7 +35,7 @@ internal class Day3 : IAdventOfCodeDay
             var commonElement = onlyThree[0].AllItems.Intersect(onlyThree[1].AllItems).Intersect(onlyThree[2].AllItems).Single();
             totalSum += ToItemPriority(commonElement);
         }
-        return $"Day 3 second result : {totalSum}";
+        return totalSum.ToString();
     }
 
     List<ruckSack> ParseFile()
