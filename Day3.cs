@@ -40,8 +40,7 @@ internal class Day3 : AdventOfCodeDay
 
     List<ruckSack> ParseFile()
     {
-        var allLines = File.ReadAllLines(@"Day3.txt");
-        return allLines.Select(line =>{
+        return LoadDayFile().Select(line =>{
             var firstHalf = line[..(line.Length / 2)];
             var secondHalf = line[(line.Length / 2)..];
             return new ruckSack(firstHalf,secondHalf);
