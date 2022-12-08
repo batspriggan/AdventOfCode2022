@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace AdventOfCode2022;
+﻿namespace AdventOfCode2022;
 internal class Day5 : AdventOfCodeDay
 {
     public override int DayNumber => 5;

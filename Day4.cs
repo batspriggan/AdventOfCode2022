@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-
-namespace AdventOfCode2022;
+﻿namespace AdventOfCode2022;
 internal class Day4 : AdventOfCodeDay
 {
     public override int DayNumber => 4;

@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Linq;
-
-namespace AdventOfCode2022;
+﻿namespace AdventOfCode2022;
 internal class Day6 : AdventOfCodeDay
 {
     public override int DayNumber => 6;
