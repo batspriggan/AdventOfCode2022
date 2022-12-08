@@ -47,7 +47,7 @@ internal class Day5 : AdventOfCodeDay
 
     (Crates[], List<MoveCrates>) ParseFile()
     {
-        var allLines = LoadDayFile();
+        var allLines = ReadDayFile();
         var cratesStrings = allLines.Take(8).ToArray();
         var cratesList = new Crates[9];
         for (int z = 0; z < 9; ++z)

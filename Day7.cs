@@ -5,9 +5,8 @@ internal class Day7 : AdventOfCodeDay
 
     public override string Calculate_1()
     {
-        var (root,flattenedList) = ParseFileSystem();
+        var (root, flattenedList) = ParseFileSystem();
         var total = flattenedList.Sum(x => { return x.TotalSize < 100000 ? x.TotalSize : 0; });
-        ShowFolder(root);
         return total.ToString();
     }
 
@@ -16,7 +15,7 @@ internal class Day7 : AdventOfCodeDay
         public string Name { get; set; }
         public List<Folder> Subfolders { get; set; } = new List<Folder>();
         public Folder Parent { get; set; }
-        
+
         public List<File> Files { get; set; } = new List<File>();
         public long TotalSize
         {
@@ -26,7 +25,7 @@ internal class Day7 : AdventOfCodeDay
                 return subFolderSize + MySize;
             }
         }
-        public long MySize { get => Files.Sum(x => x.Size);}
+        public long MySize { get => Files.Sum(x => x.Size); }
     }
     class File
     {
@@ -36,21 +35,21 @@ internal class Day7 : AdventOfCodeDay
 
     void ShowFolder(Folder folder, int depth = 0)
     {
-        Console.WriteLine(new String(' ', depth*2) + folder.Name);
+        Console.WriteLine(new String(' ', depth * 2) + folder.Name);
         foreach (var subfolder in folder.Subfolders)
         {
             ShowFolder(subfolder, depth + 1);
         }
         foreach (var file in folder.Files)
         {
-            Console.WriteLine(new String(' ', depth*2) + file.Size + " " + file.Name);
+            Console.WriteLine(new String(' ', depth * 2) + file.Size + " " + file.Name);
         }
     }
 
 
     (Folder, List<Folder>) ParseFileSystem()
     {
-        var allLines = LoadDayFile();
+        var allLines = ReadDayFile();
 
         List<Folder> flattenedFolderList = new List<Folder>();
         Folder rootFileSystem = new Folder { Name = "/" };
@@ -72,7 +71,7 @@ internal class Day7 : AdventOfCodeDay
                 currentFolder = newFolder;
             }
             else if (line == "$ ls")
-            { 
+            {
             }
             else if (line[0] != '$')
             {
@@ -96,9 +95,9 @@ internal class Day7 : AdventOfCodeDay
         long minspace = requiredFreeSpace;
         foreach (var folder in flattenedList)
         {
-            if ( (currentFreeSpace + folder.TotalSize) > requiredFreeSpace)
-            { 
-                if(folder.TotalSize < minspace)
+            if ((currentFreeSpace + folder.TotalSize) > requiredFreeSpace)
+            {
+                if (folder.TotalSize < minspace)
                     minspace = folder.TotalSize;
             }
         }

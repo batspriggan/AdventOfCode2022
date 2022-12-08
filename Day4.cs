@@ -35,7 +35,7 @@ internal class Day4 : AdventOfCodeDay
 
     List<AssignmentPair> ParseFile()
     {
-        var allLines = LoadDayFile();
+        var allLines = ReadDayFile();
         return allLines.Select(line =>
         {
             var sections = line.Split(new char[] { ',', '-' });

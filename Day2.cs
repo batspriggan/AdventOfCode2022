@@ -46,7 +46,7 @@ internal class Day2 : AdventOfCodeDay
 
     public List<singleRecord> ParseFile()
     {
-        return LoadDayFile().Select(x =>
+        return ReadDayFile().Select(x =>
         {
             var splitted = x.Split(' ');
             var first = splitted.First();

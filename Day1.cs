@@ -9,7 +9,7 @@ internal class Day1 : AdventOfCodeDay
 
         sumValues.Clear();
         int currentSum = 0;
-        foreach (var line in LoadDayFile())
+        foreach (var line in ReadDayFile())
         {
             if (string.IsNullOrWhiteSpace(line))
             {

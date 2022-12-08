@@ -8,7 +8,7 @@
 
         public string DayResults => $"Results for Day {DayNumber} ({ReferenceUrl}) :\n first result : {Calculate_1()}\n second result : {Calculate_2()}";
         
-        internal IEnumerable<string> LoadDayFile()
+        internal IEnumerable<string> ReadDayFile()
         {
             return File.ReadAllLines($"Day{DayNumber}.txt");
         }

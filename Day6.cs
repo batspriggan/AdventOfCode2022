@@ -5,7 +5,7 @@ internal class Day6 : AdventOfCodeDay
     
     public override string Calculate_1()
     {
-        var stream = LoadDayFile().ToArray()[0];
+        var stream = ReadDayFile().ToArray()[0];
         var startCom = FindSomething(stream,4);
         return startCom.ToString();
     }
@@ -29,7 +29,7 @@ internal class Day6 : AdventOfCodeDay
 
     public override string Calculate_2()
     {
-        var stream = LoadDayFile().ToArray()[0];
+        var stream = ReadDayFile().ToArray()[0];
         var startCom = FindSomething(stream, 14);
         return startCom.ToString();
     }
