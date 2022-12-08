@@ -1,4 +1,5 @@
-﻿namespace AdventOfCode2022;
+﻿using AdventOfCodeCommon;
+namespace AdventOfCode;
 public record singleRecord(string first, string second);
 internal class Day2 : AdventOfCodeDay
 {

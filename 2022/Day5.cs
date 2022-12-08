@@ -1,4 +1,5 @@
-﻿namespace AdventOfCode2022;
+﻿using AdventOfCodeCommon;
+namespace AdventOfCode;
 internal class Day5 : AdventOfCodeDay
 {
     public override int DayNumber => 5;

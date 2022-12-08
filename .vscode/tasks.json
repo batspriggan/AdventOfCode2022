@@ -7,7 +7,7 @@
 			"type": "process",
 			"args": [
 				"build",
-				"${workspaceFolder}/AdventOfCode2022.csproj",
+				"${workspaceFolder}/2022/2022.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],
@@ -19,7 +19,7 @@
 			"type": "process",
 			"args": [
 				"publish",
-				"${workspaceFolder}/AdventOfCode2022.csproj",
+				"${workspaceFolder}/2022/2022.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],
@@ -33,7 +33,7 @@
 				"watch",
 				"run",
 				"--project",
-				"${workspaceFolder}/AdventOfCode2022.csproj"
+				"${workspaceFolder}/2022/2022.csproj"
 			],
 			"problemMatcher": "$msCompile"
 		}

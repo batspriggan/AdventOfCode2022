@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using AdventOfCode2022;
+using AdventOfCodeCommon;
 
 var types = AppDomain.CurrentDomain.GetAssemblies()
     .SelectMany(s => s.GetTypes())
@@ -8,5 +8,6 @@ var types = AppDomain.CurrentDomain.GetAssemblies()
 foreach (var type in types)
 {
     var day = (AdventOfCodeDay)Activator.CreateInstance(type);
+    day.Year = 2021;
     Console.WriteLine(day.DayResults);
 }
