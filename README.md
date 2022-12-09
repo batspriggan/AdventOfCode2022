@@ -9,4 +9,4 @@ My solution to AdventOfCode2022 (https://adventofcode.com/2022/) problems, not s
 Implemented 
 Day 1,2,3,4,5,6,7,8
 Day 9, got all the part correcly but had difficulties with the movement calculation of each knots for the second part,
-so I shall mention @Perska for that part of the solution [His Day9](https://github.com/Perska/AoC2022/blob/master/AoC2022/Days/Day09.cs)
+so I shall mention Perska for that part of the solution [Perska Day9](https://github.com/Perska/AoC2022/blob/master/AoC2022/Days/Day09.cs)
