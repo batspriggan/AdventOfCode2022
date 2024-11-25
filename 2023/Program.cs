@@ -9,7 +9,7 @@ List<AdventOfCodeDay> Instances = new List<AdventOfCodeDay>();
 foreach (var type in types)
 {
     var day = (AdventOfCodeDay)Activator.CreateInstance(type);
-    day.Year = 2022;
+    day.Year = 2023;
     Instances.Add(day);
 
 }

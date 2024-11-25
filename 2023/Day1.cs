@@ -1,51 +1,67 @@
-﻿using AdventOfCodeCommon;
+﻿using System.Numerics;
+using AdventOfCodeCommon;
 namespace AdventOfCode;
 
 
 internal class Day1 : AdventOfCodeDay
 {
     public override int DayNumber => 1;
-    List<int> sumValues = new List<int>();
+    
     public override string Calculate_1()
     {
-        return null;
-        sumValues.Clear();
-        int currentSum = 0;
+        int total = 0;
         foreach (var line in ReadDayFile())
         {
-            if (string.IsNullOrWhiteSpace(line))
+            if (!string.IsNullOrWhiteSpace(line))
             {
-                var first = line.First(x => Char.IsNumber(x));
-                var last = line.Last(x => Char.IsNumber(x));
-                sumValues.Add(currentSum);
-                currentSum = 0;
-                continue;
+                total += getNumber(line);
             }
-            currentSum += int.Parse(line);
         }
-        return sumValues.Max().ToString();
+        return total.ToString();
+    }
+    private Dictionary<string, string> numberString = new Dictionary<string, string>
+    {
+        {"one", "one1one"},
+        {"two","two2two"},
+        {"three","three3three"},
+        {"four","four4four"},
+        {"five","five5five"},
+        {"six","six6six"},
+        {"seven","seven7seven"},
+        {"eight","eight8eight"},
+        {"nine","nine9nine"},
+        {"zero","zero0zero"}
+    };
+    private string replaceNumberString(string line)
+    {
+        var newline = line;
+        foreach(var x in numberString)
+        {
+            newline = newline.Replace(x.Key, x.Value);
+        }
+        return newline;
     }
 
-    //int FindFirstNumber(string line)
-    //{
-    //    string number = "";
-    //    var first = line.IndexOf(x => Char.IsNumber(x));
-    //    foreach (var item in line)
-    //    {
-    //        var first = line.First(x => Char.IsNumber(x));
-    //        number += first;
-    //    }
-    //}
-
-
-
+    private int getNumber(string line)
+    {
+        var first = line.FirstOrDefault(x => Char.IsNumber(x));
+        var last = line.LastOrDefault(x => Char.IsNumber(x));
+        if (first == '\0' || last == '\0')
+                return 0;
+        var number = (first - 48) * 10 + last - 48;
+        Console.WriteLine($"{line},{first},{last},{number}");
+        return number;
+    }
     public override string Calculate_2()
     {
-        return null;
-        var _ = Calculate_1();
-        sumValues.Sort();
-        sumValues.Reverse();
-        var maxthree = sumValues.Take(3).Sum();
-        return maxthree.ToString();
+        int total = 0;
+        foreach (var line in ReadDayFile())
+        {
+            if (!string.IsNullOrWhiteSpace(line))
+            {
+                total += getNumber(replaceNumberString(line));
+            }
+        }
+        return total.ToString();
     }
 }
