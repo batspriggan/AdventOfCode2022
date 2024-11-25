@@ -11,7 +11,7 @@ foreach (var type in types)
     var day = (AdventOfCodeDay)Activator.CreateInstance(type);
     day.Year = 2022;
     Instances.Add(day);
-    
+
 }
 
 Instances.OrderBy(x => x.DayNumber).ToList().ForEach(x => Console.WriteLine(x.DayResults));
