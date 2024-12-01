@@ -24,6 +24,30 @@
 				"${workspaceFolder}/2022/2022.csproj"
 			],
 			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "watch",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"watch",
+				"run",
+				"--project",
+				"${workspaceFolder}/2024/2024.csproj"
+			],
+			"problemMatcher": "$msCompile"
+		},
+		{
+			"label": "watch",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"watch",
+				"run",
+				"--project",
+				"${workspaceFolder}/2021/2021.csproj"
+			],
+			"problemMatcher": "$msCompile"
 		}
 	]
 }
