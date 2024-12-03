@@ -7,7 +7,7 @@ var types = AppDomain.CurrentDomain.GetAssemblies()
 
 foreach (var type in types)
 {
-    var day = (AdventOfCodeDay)Activator.CreateInstance(type);
-    day.Year = 2021;
+    var day = Activator.CreateInstance(type) as AdventOfCodeDay;
+    day!.Year = 2021;
     Console.WriteLine(day.DayResults);
 }

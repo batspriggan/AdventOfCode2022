@@ -8,11 +8,10 @@ var types = AppDomain.CurrentDomain.GetAssemblies()
 List<AdventOfCodeDay> Instances = new List<AdventOfCodeDay>();
 foreach (var type in types)
 {
-    var day = (AdventOfCodeDay)Activator.CreateInstance(type);
-    day.Year = 2024;
+    var day = Activator.CreateInstance(type) as AdventOfCodeDay;
+    day!.Year = 2024;
     Instances.Add(day);
-
 }
 
 Instances.OrderBy(x => x.DayNumber).ToList().ForEach(x => Console.WriteLine(x.DayResults));
-Console.ReadKey();
+Console.Read();
