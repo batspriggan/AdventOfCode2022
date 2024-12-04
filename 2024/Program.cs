@@ -14,4 +14,3 @@ foreach (var type in types)
 }
 
 Instances.OrderBy(x => x.DayNumber).ToList().ForEach(x => Console.WriteLine(x.DayResults));
-Console.Read();
