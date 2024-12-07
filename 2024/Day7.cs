@@ -1,22 +1,16 @@
-using System.Diagnostics;
-using System.Globalization;
-using System.IO.Compression;
-using System.Numerics;
 using AdventOfCodeCommon;
 namespace AdventOfCode;
 
 internal class Day7 : AdventOfCodeDay
 {
 	public override int DayNumber => 7;
-	char[] symbols1 = new char[] { '*', '+' };
-	char[] symbols2 = new char[] { '*', '+', '|' };
+	readonly char[] symbols1 = new char[] { '*', '+' };
+	readonly char[] symbols2 = new char[] { '*', '+', '|' };
 
 	static List<string> GenerateCombinations(int n, char[] symbols)
 	{
-		List<string> results = new List<string>();
-
+		List<string> results = new();
 		int totalCombinations = (int)Math.Pow(symbols.Length, n);
-
 		for (int i = 0; i < totalCombinations; i++)
 		{
 			string combination = "";
@@ -34,7 +28,6 @@ internal class Day7 : AdventOfCodeDay
 		return results;
 	}
 
-	public record SimpleOps(List<char> operands, List<long> numbers);
 	bool CheckAnyOperatorGenerateResult(long[] numbers, long result, List<string> operators)
 	{
 		foreach (var oplist in operators)
@@ -42,7 +35,11 @@ internal class Day7 : AdventOfCodeDay
 			long total = numbers[0];
 			for (int i = 1; i < numbers.Length; ++i)
 			{
-				if (oplist[i - 1] == '*')
+				if (oplist[i - 1] == '|')
+				{
+					total = long.Parse($"{total}{numbers[i]}");
+				}
+				else if (oplist[i - 1] == '*')
 					total *= numbers[i];
 				else
 					total += numbers[i];
@@ -64,10 +61,7 @@ internal class Day7 : AdventOfCodeDay
 			if (CheckAnyOperatorGenerateResult(splitted.Skip(1).Select(x => long.Parse(x)).ToArray(), result, operators))
 				total += result;
 		}
-
-		Stopwatch stopwatch = Stopwatch.StartNew();
-		stopwatch.Stop();
-		return total.ToString() + $" ExecTime = {stopwatch.Elapsed.TotalMilliseconds}";
+		return total.ToString();
 	}
 
 	public override string Calculate_2()
@@ -81,9 +75,6 @@ internal class Day7 : AdventOfCodeDay
 			if (CheckAnyOperatorGenerateResult(splitted.Skip(1).Select(x => long.Parse(x)).ToArray(), result, operators))
 				total += result;
 		}
-
-		Stopwatch stopwatch = Stopwatch.StartNew();
-		stopwatch.Stop();
-		return total.ToString() + $" ExecTime = {stopwatch.Elapsed.TotalMilliseconds}";
+		return total.ToString();
 	}
 }
