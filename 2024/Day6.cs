@@ -1,8 +1,4 @@
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using System.Globalization;
-using System.Security.Cryptography.X509Certificates;
 using AdventOfCodeCommon;
 namespace AdventOfCode;
 
@@ -62,7 +58,7 @@ class Day6Matrix
 	private bool NextIsOut(int x, int y, int xdir, int ydir) => this[x + xdir, y + ydir] == 'O';
 	private bool IsOut(int x, int y) => this[x, y] == 'O';
 
-	public int Run(int x, int y, bool canHaveLoop = false)
+	public int Run(int x, int y, bool canHaveLoop = false, List<(int x, int y)> visited = null)
 	{
 		int direction = 0;
 		int currentx = x;
@@ -91,20 +87,24 @@ class Day6Matrix
 			++iteration;
 			//DisplayData(currentx, currenty);
 		}
+		if (visited != null)
+			visited.AddRange(visits.Keys.ToList());
 		return visits.Count();
 	}
 
-	public (int x, int y) AddObstacle(int x, int y)
+	public (int x, int y) AddObstacle(int x, int y, List<(int x, int y)> visited)
 	{
 		int i = x;
-		for (int j = y; j < this.YDimension; ++j)
+		for (int j = y; j < YDimension; ++j)
 		{
-			for (; i < this.XDimension; ++i)
+			for (; i < XDimension; ++i)
 			{
-				if (this[i,j] == '#')
+				if (!visited.Contains((i, j)))
 					continue;
-				this[i,j] = '#';
-				return (i,j);
+				if (this[i, j] == '#')
+					continue;
+				this[i, j] = '#';
+				return (i, j);
 			}
 			i = 0;
 		}
@@ -129,9 +129,11 @@ class Day6Matrix
 		bool ended = false;
 		int currentx = 0;
 		int currenty = 0;
+		var visited = new List<(int x, int y)>();
+		Run(guardx, guardy, false, visited);
 		while (!ended)
 		{
-			(currentx, currenty) = AddObstacle(currentx, currenty);
+			(currentx, currenty) = AddObstacle(currentx, currenty, visited);
 			if (Run(guardx, guardy, true) == -1)
 				++number;
 
@@ -177,7 +179,7 @@ internal class Day6 : AdventOfCodeDay
 		var guard = matrix.SearchGuard();
 		Stopwatch stopwatch = Stopwatch.StartNew();
 		total = matrix.Run(guard.x, guard.y);
-		stopwatch.Stop();	
+		stopwatch.Stop();
 		return total.ToString() + $" ExecTime = {stopwatch.Elapsed.TotalMilliseconds}";
 	}
 
@@ -191,7 +193,7 @@ internal class Day6 : AdventOfCodeDay
 		Stopwatch stopwatch = Stopwatch.StartNew();
 		var guard = matrix.SearchGuard();
 		var number = matrix.FindObstacleNumber(guard.x, guard.y);
-		stopwatch.Stop();	
+		stopwatch.Stop();
 		return number.ToString() + $" ExecTime = {stopwatch.Elapsed.TotalMilliseconds}";
 	}
 }
